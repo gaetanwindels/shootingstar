@@ -1,0 +1,25 @@
+{
+  "name": "shootingstar",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "watchify app/app.js -o app/build/build.js"
+  },
+  "author": "Gaetan Windels",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "phaser": "^2.6.1"
+  },
+  "devDependencies": {
+    "gutil": "^1.6.4",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0",
+    "browserify": "^13.1.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "lodash.assign": "^4.2.0"
+  }
+}
