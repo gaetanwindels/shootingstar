@@ -10,7 +10,9 @@ var gulp = require('gulp'),
 // add custom browserify options here
 var customOpts = {
     entries: ['./app/app.js'],
-    debug: true
+    debug: true,
+    packageCache: {},
+    cache: {}
 };
 var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts));

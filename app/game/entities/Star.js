@@ -49,9 +49,8 @@ Star.prototype.update = function() {
     }
 
     if (this.tween == null || !this.tween.isRunning) {
-        this.body.velocity.y = -2000;
+        //this.body.velocity.y = -2500;
         this.alpha = 1;
-
     }
 }
 

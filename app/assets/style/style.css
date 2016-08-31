@@ -1,36 +1,47 @@
+@font-face {
+    font-family: pixelFont;
+    src: url(../fonts/font.TTF);
+}
+
 body {
     background-color: black;
     color: black;
     padding: 0px;
     margin: 0px;
+    overflow: hidden;
 }
 
 a, p {
-    color: black;
+    color: white;
     text-decoration: none;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: pixelFont;
 }
 
 .mainTitle {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: pixelFont;
     color: white;
-    font-size: 60px;
+    font-size: 10vw;
     margin-bottom: 50px;
+    position: absolute;
+    width: 100%;
+    top: 10%;
 }
 
 .menu {
-    padding-top: 10%;
     text-align: center;
 }
 
 .menu-btn {
     display: block;
-    width: 40%;
     padding: 10px;
     margin: 20px auto;
-    background-color: white;
-    border: 2px blue solid;
-    border-radius: 10px;
-    font-size: 40px;
+    font-size: 5vw;
     text-decoration: none;
+}
+
+.menu-choice {
+    position: absolute;
+    top: 60%;
+    margin: auto;
+    width: 100%;
 }

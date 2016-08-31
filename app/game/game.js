@@ -12,12 +12,16 @@ var instance = null;
 
 var star;
 
-game.start = function(elmt) {
-
+game.init = function(elmt) {
 
     instance = new Phaser.Game(window.innerWidth,
         window.innerHeight,
         Phaser.AUTO, elmt, { preload: preload, create: create, update: update });
+}
+
+game.start = function() {
+    star && (star.body.velocity.y = -1500);
+    //console.log(star.body.velocity.y);
 }
 
 function preload() {

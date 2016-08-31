@@ -11,7 +11,7 @@ var angular = require("angular"),
 function gameDirective() {
     return {
         link: function($scope, $elmt, $attr) {
-            game.start($elmt[0]);
+            game.init($elmt[0]);
         }
     }
 }

@@ -20,11 +20,13 @@ PlanetGroup.prototype.constructor = PlanetGroup;
 
 PlanetGroup.prototype.spanwPlanet = function() {
     var lastChild = this.getChildAt(this.children.length - 1);
-    var fromX = lastChild.width;
-    var toX = this.game.world.randomX + lastChild.width - lastChild.width;
-    var toY = lastChild.y - this.game.world.randomY / 8 - lastChild.height;
+    var fromX = 0;
+    var toX = this.game.width;
+    var fromY = lastChild.y - lastChild.height * 2;
+    var toY = fromY + this.game.world.height / 14;
 
-    var sprite = new Planet(this.game, Utils.getRandomArbitrary(fromX, toX), toY);
+    var sprite = new Planet(this.game, this.game.world.randomX,
+                                       Utils.getRandomArbitrary(fromY, toY));
 
     sprite.tint = Math.random() * 0xffffff;
     this.add(sprite);
@@ -37,13 +39,13 @@ PlanetGroup.prototype.update = function() {
     this.forEach(function(item) {
 
         var star = this.star;
-
-        //if (item.getBounds().contains(star.x + star.width / 2, star.y + star.height / 2)) {
-            //console.log(item.getBounds());
-            //console.log(star.centerX + "," + star.centerY);
-        //}
+        if(Utils.pointInCircle(this.star.centerX, this.star.centerY, item.centerX, item.centerY, item.width / 2)) {
+            star.kill();
+            //window.location("#menu");
+        }
 
         var lastChild = this.getChildAt(this.children.length - 1);
+
         if (lastChild.y + lastChild.height > this.game.camera.view.y) {
             this.spanwPlanet();
         }

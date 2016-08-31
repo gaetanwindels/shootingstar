@@ -5,9 +5,10 @@ BackgroundStarGroup = function (game, foreGround) {
     Phaser.Group.call(this, game);
 
     this.foreGround = foreGround;
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 40; i++) {
         var sprite = new BackgroundStar(game, game.world.randomX, game.world.randomY, foreGround);
         this.add(sprite);
+
     }
 };
 
