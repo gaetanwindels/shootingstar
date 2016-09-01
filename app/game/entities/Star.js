@@ -13,14 +13,16 @@ var Star = function (game) {
 
     this.tween = null;
     this.body.velocity.y = 0;
+
+    console.log(this.x);
+    console.log(this.y);
+    console.log(game);
 };
 
 Star.prototype = Object.create(Phaser.Sprite.prototype);
 Star.prototype.constructor = Star;
 
 Star.prototype.update = function() {
-
-
     if (this.game.input.pointer1.isDown) {
         //this.rotation = this.game.physics.arcade.angleToPointer(this);
         if (this.x > this.game.input.pointer1.x)  {
@@ -32,18 +34,6 @@ Star.prototype.update = function() {
         }
 
         this.x = this.game.input.pointer1.x;
-        // if it is a tap
-        /*if (this.game.input.pointer1.justPressed(100) &&
-            (this.tween == null || !this.tween.isRunning)) {
-            this.destX = this.game.input.pointer1.x;
-            this.destY = this.y - (this.game.height - this.game.input.pointer1.y);
-            this.body.velocity.y = 0;
-            this.alpha = 0.5;
-
-            this.rotation = this.game.physics.arcade.angleToPointer(this);
-
-            this.tween = this.game.add.tween(this).to( { x: this.destX | 0, y: this.destY | 0  }, 100, null, true);
-        }*/
     } else {
         this.angle = 0;
     }
