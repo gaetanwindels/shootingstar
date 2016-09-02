@@ -38,16 +38,13 @@ Game.prototype.init = function(elmt) {
 
     game = this.instance;
 
-    console.log(this.instance.width);
-    console.log(this.instance.height);
-
 }
 
 Game.prototype.start = function() {
-    this.instance.star && (this.instance.star.body.velocity.y = -1500);
-    console.log(this.instance);
-    console.log(this.instance.star);
-    console.log(this.instance.star.body.velocity.y);
+    this.instance.planets.init();
+    //this.instance.background.reset();
+    //this.instance.foreround.reset();
+    this.instance.star.reset();
 }
 
 Game.prototype.get = function() {
@@ -55,19 +52,25 @@ Game.prototype.get = function() {
 }
 
 function preload() {
+    game.load.audio('music', 'assets/sounds/music.mp3');
     game.load.image('star', 'assets/images/star.png');
     game.load.image('planet', 'assets/images/planet.png');
     game.load.image('backgroundStar', 'assets/images/backgroundStar.png');
 }
 
 function create() {
+    var audio = game.add.audio("music");
+
+    audio.play();
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.star = new Star(game);
     //game.star.body.velocity.y = -1500;
 
-    new BackgroundStarGroup(game);
-    new PlanetGroup(game, game.star);
-    new BackgroundStarGroup(game, true);
+    game.background = new BackgroundStarGroup(game);
+    game.planets = new PlanetGroup(game, game.star);
+    game.foreground = new BackgroundStarGroup(game, true);
+
     game.camera.follow(game.star, Phaser.Camera.FOLLOW_TOPDOWN);
     game.camera.bounds = null;
     var camHeight = game.height * 0.6;
