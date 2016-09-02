@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     connect = require('gulp-connect'),
     browserify = require('browserify'),
+    uglify = require('gulp-uglifyjs'),
     watchify = require('watchify'),
     fs = require('fs'),
     assign = require('lodash.assign'),
@@ -45,4 +46,17 @@ gulp.task('connect', function() {
     });
 });
 
+gulp.task('copy', function() {
+    gulp.src(['app/assets/**/*',
+              'app/index.html'], { "base" : "." })
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('uglify', function() {
+    gulp.src('app/build/build.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/app/build/'))
+});
+
 gulp.task('default', ['connect', 'watchify']);
+gulp.task('deploy', ['copy', 'uglify']);
