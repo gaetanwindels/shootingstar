@@ -19,9 +19,13 @@ BackgroundStarGroup.prototype.reset = function() {
      * Less expensive than creating x sprites
      */
     this.forEach(function(item) {
-        //item.x = this.game.world.randomX;
-        //item.y = this.game.world.randomY;
+        item.destroy();
     }.bind(this));
+
+    for (var i = 0; i < 40; i++) {
+        var sprite = new BackgroundStar(this.game, this.game.world.randomX, this.game.world.randomY, this.foreGround);
+        this.add(sprite);
+    }
 }
 
 BackgroundStarGroup.prototype.update = function() {
@@ -30,7 +34,7 @@ BackgroundStarGroup.prototype.update = function() {
 
         item.update();
 
-        if(!item.inCamera) {
+        if(!item.inCamera && item.x > this.game.camera.view.x) {
             item.y -= this.game.height;
             item.x = this.game.world.randomX;
         }

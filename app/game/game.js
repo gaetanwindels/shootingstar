@@ -42,9 +42,10 @@ Game.prototype.init = function(elmt) {
 
 Game.prototype.start = function() {
     this.instance.planets.init();
-    //this.instance.background.reset();
-    //this.instance.foreround.reset();
+
     this.instance.star.reset();
+    this.instance.background.reset();
+    this.instance.foreground.reset();
 }
 
 Game.prototype.get = function() {
