@@ -5,18 +5,9 @@ var Star = require("./entities/Star");
 var Planet = require("./entities/Planet");
 var BackgroundStarGroup = require("./groups/BackgroundStarGroup");
 var PlanetGroup = require("./groups/PlanetGroup");
+var LevelManager = require("./managers/LevelManager");
 
 Game = function() {
-
-   /* this.instance = new Phaser.Game(window.innerWidth,
-        window.innerHeight,
-        Phaser.AUTO);
-
-    this.instance.state.add("init", {
-        preload: preload,
-        create: create,
-        update: update
-    });*/
 
 };
 
@@ -42,10 +33,11 @@ Game.prototype.init = function(elmt) {
 
 Game.prototype.start = function() {
     this.instance.planets.init();
-
+    this.instance.levelManager.reset();
     this.instance.star.reset();
     this.instance.background.reset();
     this.instance.foreground.reset();
+
 }
 
 Game.prototype.get = function() {
@@ -64,10 +56,13 @@ function create() {
 
     audio.play();
 
+
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.star = new Star(game);
     //game.star.body.velocity.y = -1500;
 
+    game.levelManager = new LevelManager(game.star);
     game.background = new BackgroundStarGroup(game);
     game.planets = new PlanetGroup(game, game.star);
     game.foreground = new BackgroundStarGroup(game, true);
@@ -81,6 +76,7 @@ function create() {
 }
 
 function update() {
+    game.levelManager.update();
 }
 
 function renderer() {
